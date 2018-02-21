@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+
+    <script type="text/javascript">
+      function add_sub(el)
+    {
+    var cbs = document.getElementById('checkboxes').getElementsByTagName('input');
+    var textareaValue = 0;
+    for (var i = 0, len = cbs.length; i<len; i++) {
+        if ( cbs[i].type === 'checkbox' && cbs[i].checked) {
+              textareaValue += parseInt(cbs[i].value);
+        }
+        if (textareaValue == 38)
+        {
+          textareaValue = "33: you're entering all the tournaments, so you get $5 off!"
+        }
+      }
+       document.getElementById('textarea').value = textareaValue;
+      }
+    </script>
+
+  </head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="one-half column" style="margin-top: 10%">
+  <form name="form1" method=post>
+  <textarea id="textarea" name="type" rows="5" cols="35" onclick="this.focus();this.select();"></textarea><br>
+  <div id="checkboxes">
+            <input type="checkbox" id="id1" value="10" onclick="add_sub(this);"> ITG Singles ($10)<br>
+            <input type="checkbox" id="id2" value="10" onclick="add_sub(this);"> ITG Doubles ($10)<br>
+            <input type="checkbox" id="id3" value="5" onclick="add_sub(this);"> Mods SRT ($5)<br>
+            <input type="checkbox" id="id4" value="5" onclick="add_sub(this);"> ITG Couples ($5)<br>
+            <input type="checkbox" id="id5" value="5" onclick="add_sub(this);"> PIU Singles ($5)<br>
+            <input type="checkbox" id="id6" value="3" onclick="add_sub(this);"> Venue Fee ($3)
+  </div>
+  </form>
+
+	<br>
+	Please send this amount here! <a href="http://paypal.me/ianek/">http://paypal.me/ianek/</a>
+	<br><br>
+	Mad shoutouts to Tucker for making this webform.
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
