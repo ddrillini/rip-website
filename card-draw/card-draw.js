@@ -26,6 +26,13 @@ function draw(number)
         img.src="banners/" + banners[x]
         img.width='418'
         img.height='164'
+        img.addEventListener("click", function() {
+            if (img.style.opacity == .2)
+                img.style.opacity = 1
+            else
+                img.style.opacity = .2
+        })
+        // img.style.opacity = '.2'
 
         cards.appendChild(img)
     }
