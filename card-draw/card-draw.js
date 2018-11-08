@@ -5,19 +5,13 @@ var current_position = -1;
 
 function draw(number)
 {
+    if (current_position < previous_state_stack.length)
+    	previous_state_stack.length = current_position + 1
 
-    if(current_position < previous_state_stack.length)
-	previous_state_stack.length = current_position + 1
-
-    // save the last run's values
-    //if ("seen_numbers" in window)
-        //previous_state_stack.push(seen_numbers)
-	
-    	seen_numbers = randomize(number)
-	previous_state_stack.push(seen_numbers)
+	random_number_array = randomize(number)
+	previous_state_stack.push(random_number_array)
 	current_position++
-	render(seen_numbers)
-
+	render(random_number_array)
 }
 
 function fuck_go_back()
@@ -38,19 +32,26 @@ function fuck_go_forward()
 
 function randomize(numRequested)
 {
-    var seen_numbers = [];
+    var random_number_array = [];
+
+    // for a total of numRequested times
 	for (var i = 0; i < numRequested; i++) {
-       		x = Math.floor(Math.random() * banners.length);
-        if(seen_numbers.indexOf(x) >= 0)
+
+        // generate a random number
+   		x = Math.floor(Math.random() * banners.length);
+
+        // catch duplicates
+        if(random_number_array.indexOf(x) >= 0)
         {
-            // catch duplicates
             i = i-1;
             continue
         }
         
-        seen_numbers.push(x)
-       }
-	return seen_numbers
+        random_number_array.push(x)
+    }
+
+    // now the array contains a lot of random numbers
+	return random_number_array 
 }
 
 function render(cardArray)
