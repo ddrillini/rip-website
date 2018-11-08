@@ -13,7 +13,10 @@
         <input type="submit" class='button' value="FIVE" onclick="javascript:draw(5)">
         <input type="submit" class="button" value="SEVEN" onclick="javascript:draw(7)">
 
-        <input type="submit" class="button" value="fuck go back" onclick="javascript:fuck_go_back()" style="float: right;">
+        <div style="float: right;">
+            <input id="Undo" type="submit" class="button" value="Undo" onclick="javascript:fuck_go_back()">
+            <input id="Redo" type="submit" class="button" value="Redo" onclick="javascript:fuck_go_forward()">
+        </div>
 
         <hr>
 
