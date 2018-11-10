@@ -1,16 +1,24 @@
-var discord_webhook_url = "https://discordapp.com/api/webho"+"oks/51087618717882"+"7786/zBNpG-DblnHLqfaHt8mI1gPZfKr0wEZ5p6MIrZ1fZ"+"RJRz8jFYv1IwqNIfdH5xIY-w_Ud"; // so bots don't scrape it
+'use strict';
+
+var discord_webhook_url = "https://dis"+"corda"+"pp.com/api/webho"+"oks/51087618717882"+'7786/zBNpG-Db'+'lnHLqfaHt8'+'mI1gPZfKr0wEZ5p6MIr'+'Z1fZ'+'RJRz8jFYv'+"1IwqNIfdH5xIY-w_Ud"; // so bots don't scrape it
 
 var previous_state_stack = [];
 var cards = document.getElementById("card-area")
-var banners = [ "99plus-bn.png", "Aceshaped-bn.png", "Arcana-bn.png", "Bass Weapon LAZERFLAME-bn.png", "Beyond The Power-bn.png", "Chatterbox-bn.png", "Colltorn-bn.png", "DD-bn.png", "Deceptive-bn.png", "GATE bn.png", "Glacier-bn.png", "Glitchtastic-bn.png", "Heard Right-bn.png", "Heart Beat Formula-bn.png", "I Hold Still-bn.png", "Kirby Smash - bn.png", "Like a Lady-bn.png", "Marionette-bn.png", "Mind Eruption-bn.png", "Mr. Toot-bn.png", "Oboro (dj TAKA Remix)-bn.png", "Papipopepipupepa-bn.png", "QUAKE-bn.png", "Quick Attack!-bn.png", "RocketLanterns-bn.png", "Seedy Try-bn.png", "TGB-bn.png", "Time For Tea-bn.png", "With You-bn.png", "acidburst-bn.png", "binary-bn.png", "blue-bn.png", "boombayah bn.png", "candy-bn.png", "capitalism-cannon-bn.png", "cosmiccat-bn.png", "debug-bn.png", "drunkenstein-bn.png", "elevatia-bn.png", "holic-bn.png", "iamchris4-bn.png", "idwk-bn.png", "mtpdd-bn.png", "non-fiction world-bn.png", "prof-bn.png", "static-state-bn.png", "swamp bn.png", "technoid-bn.png", "thesettingsun-bn.png", "your-beautiful-bn.png" ]
+
+var banners = [
+	'99plus.png','Aceshaped.png','acidburst.png','Arcana.png','Bass Weapon LAZERFLAME.png','BeyondThePower.png','binary.png','blue.png','boombayah.png','candy.png','capitalism-cannon.png','Chatterbox.png','Colltorn.png','cosmiccat.png','DD.png','debug.png','deceptive.png','drunkenstein.png','elevatia.png','gargoyle.png','GATE.png','Glacier.png','Glitchtastic.png','Heard-Right.png','HeartBeatFormula.png','holic.png','idwk.png','I-Hold-Still.png','KirbySmash.png','Like-a-Lady.png','Marionette.png','Mind-Eruption.png','Mr-Toot.png','mtpdd.png','non-fiction-world.png','Oboro-dj-TAKA-Remix.png','Papipopepipupepa.png','prof.png','QUAKE.png','Quick-Attack.png','Rocket-Lanterns.png','Seedy-Try.png','static-state.png','swamp.png','technoid.png','TGB.png','thesettingsun.png','Time-For-Tea.png','With-You.png','your-beautiful.png'
+]
+
+var opacity = 0.2
+
 var current_position = -1;
 
 function draw(number)
 {
-    if (current_position < previous_state_stack.length)
-    	previous_state_stack.length = current_position + 1
+	if (current_position < previous_state_stack.length)
+		previous_state_stack.length = current_position + 1
 
-	random_number_array = randomize(number)
+	let random_number_array = randomize(number)
 	previous_state_stack.push(random_number_array)
 	current_position++
 	render(random_number_array)
@@ -18,68 +26,102 @@ function draw(number)
 
 function fuck_go_back()
 {
-   if(current_position >0)
-    current_position--
+if(current_position >0)
+	current_position--
 
-    render(previous_state_stack[current_position])
+	render(previous_state_stack[current_position])
 }
 
 function fuck_go_forward()
 {
-    if(current_position < previous_state_stack.length - 1)
+	if(current_position < previous_state_stack.length - 1)
 	current_position++
 
-    render(previous_state_stack[current_position])
+	render(previous_state_stack[current_position])
 }
 
 function randomize(numRequested)
 {
-    var random_number_array = [];
+	let random_number_array = [];
 
-    // for a total of numRequested times
-	for (var i = 0; i < numRequested; i++) {
+	// for a total of numRequested times
+	for (let i = 0; i < numRequested; i++) {
 
-        // generate a random number
-   		x = Math.floor(Math.random() * banners.length);
+		// generate a random number
+		let x = Math.floor(Math.random() * banners.length);
 
-        // catch duplicates
-        if(random_number_array.indexOf(x) >= 0)
-        {
-            i = i-1;
-            continue
-        }
-        
-        random_number_array.push(x)
-    }
+		// catch duplicates
+		if (random_number_array.indexOf(x) >= 0)
+		{
+			i = i-1;
+			continue
+		}
+		
+		random_number_array.push(x)
+	}
 
-    // now the array contains a lot of random numbers
+	// now the array contains a lot of random numbers
 	return random_number_array 
 }
 
 function render(cardArray)
 {
-	console.log(cardArray)
-	console.log(current_position)
-	console.log(previous_state_stack)
-	if(cardArray === null)
-	return
+	if (cardArray === null)
+		return
+	
 	// remove the old ones
-   	 while (cards.firstChild) {
-        	cards.removeChild(cards.firstChild);
-    	}
-	for (var i=0; i < cardArray.length; i++) {
-        	let img = document.createElement('img')
-        	img.src="banners/" + banners[cardArray[i]]
-        	img.width='418'
-        	img.height='164'
-        	img.addEventListener("click", function() {
-            if (img.style.opacity == .2)
-                img.style.opacity = 1
-            else
-                img.style.opacity = .2
-        })
-        // img.style.opacity = '.2'
-
-        cards.appendChild(img)
+	while (cards.firstChild) {
+		cards.removeChild(cards.firstChild);
 	}
+	
+	for (var i=0; i < cardArray.length; i++) {
+		let img = document.createElement('img')
+		img.src="banners/" + banners[cardArray[i]]
+		img.width='418'
+		img.height='164'
+		img.addEventListener("click", function() {
+		if (img.style.opacity == opacity)
+			img.style.opacity = 1
+		else
+			img.style.opacity = opacity
+		})
+		cards.appendChild(img)
+	}
+}
+
+function webhook()
+{
+	if (current_position < 0) {
+		alert('fuck there\'s nothing here');
+	}
+	
+	let the_picks = previous_state_stack[current_position];
+	let card_array = cards.childNodes;
+	
+	let result = []
+	
+	for (var i=0; i < card_array.length; i++) {
+		let curr = card_array[i]
+		let status = true
+		if (curr.style.opacity === (opacity.toString())) {
+			status = false
+		}
+		
+		if (status) {
+			console.log(banners[the_picks[i]])
+			result.push(banners[the_picks[i]])
+		}
+	}
+	
+	result = result.join(', ')
+	
+	let httpRequest = new XMLHttpRequest();
+	httpRequest.open('POST', discord_webhook_url, true);
+	httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	
+	let the_body = 'pool picks: ' + result + '\nAnnyeong!!!! owo wwwww~~~~~'
+	console.log(the_body)
+	
+	httpRequest.send(JSON.stringify({ 'content': the_body} ));
+	
 }
