@@ -76,7 +76,7 @@ function render(cardArray)
 	
 	for (var i=0; i < cardArray.length; i++) {
 		let img = document.createElement('img')
-		img.src="banners/" + banners[cardArray[i]]
+		img.src="banners/rip11-banners/" + banners[cardArray[i]]
 		img.width='418'
 		img.height='164'
 		img.addEventListener("click", function() {
