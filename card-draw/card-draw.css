@@ -8,3 +8,23 @@
     display: inline-block;
     font-size: 16px;
 }
+
+.card_regular, .card_protected, .card_vetoed {
+    display: inline-block;
+    width: 418px;
+    height: 164px;
+    margin: 10px;
+}
+
+.card_regular {
+    opacity: 1;
+}
+
+.card_protected {
+    opacity: 1;
+    box-shadow: 0px 0px 2px 7px #c20f3c;
+}
+
+.card_vetoed {
+    opacity: .3;
+}

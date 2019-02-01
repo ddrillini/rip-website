@@ -4,12 +4,13 @@ var discord_webhook_url = "https://dis"+"corda"+"pp.com/api/webho"+"oks/51087618
 
 var previous_state_stack = [];
 var cards = document.getElementById("card-area")
+var card_objects = []
 
 var banners = [
 	'aasbn.png','aceshapedbn.png','acidburst-bn.png','Armada-bn.png','Bass Weapon LAZERFLAME-bn.png','Beach Episode-bn.png','candy-bn.png','carrymeaway-bn.png','ccbn.png','Chatterbox-bn.png','DD-bn.png','debug-bn.png','Dontdie-bn.png','drunkenstein-bn.png','Egret and Willow-bn.png','Electric Dance System Music-bn.png','fhdbn.png','fireinside-bn.png','Fly far bounce-bn.png','Glacier-bn.png','Glitchtastic-bn.png','holic-bn.png','hrbn.png','I Hold Still-bn.png','idwk-bn.png','invaders-bn.png','kaede-bn.png','Kotobuki-bn.png','Like a Lady-bn.png','Metamorphosis-bn.png','Mind Eruption-BN.png','moment-bn.png','mtpdd-bn.png','Oboro (dj TAKA Remix)-bn.png','owover kmsn - bn.png','Papipopepipupepa-bn.png','quakebn.png','random-bn.png','RocketLanterns-bn.png','sbn.png','Seedy Try-bn.png','ssbn.png','technoid-bn.png','thesettingsun-bn.png','Time For Tea-BN.png','wavey-bn.png','Welcome_To_The_Cyphisonia-bn.png','ybbn.png'
 ]
 
-var opacity = 0.2
+var statuses = ['card_regular', 'card_protected', 'card_vetoed']
 
 var current_position = -1;
 
@@ -73,19 +74,20 @@ function render(cardArray)
 	while (cards.firstChild) {
 		cards.removeChild(cards.firstChild);
 	}
-	
+	card_objects = []
+
 	for (var i=0; i < cardArray.length; i++) {
-		let img = document.createElement('img')
-		img.src="banners/rip11-banners/" + banners[cardArray[i]]
-		img.width='418'
-		img.height='164'
+		let img = document.createElement('div')
+		img.style = "background-image: url('banners/rip11-banners/" + banners[cardArray[i]] + "')"
+		img.status = 0
+		img.className = statuses[0]
 		img.addEventListener("click", function() {
-		if (img.style.opacity == opacity)
-			img.style.opacity = 1
-		else
-			img.style.opacity = opacity
+			img.status++
+			img.status %= statuses.length
+			img.className = statuses[img.status]
 		})
 		cards.appendChild(img)
+		card_objects.push(img)
 	}
 }
 
@@ -101,13 +103,9 @@ function webhook()
 	let result = []
 	
 	for (var i=0; i < card_array.length; i++) {
-		let curr = card_array[i]
-		let status = true
-		if (curr.style.opacity === (opacity.toString())) {
-			status = false
-		}
-		
-		if (status) {
+		let curr = card_objects[i]
+		let active = curr.status !== 2
+		if (active) {
 			console.log(banners[the_picks[i]])
 			result.push(banners[the_picks[i]])
 		}
