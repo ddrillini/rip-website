@@ -1,125 +1,144 @@
-'use strict';
+const tournament = 'rip11';
 
-var discord_webhook_url = "https://dis"+"corda"+"pp.com/api/webho"+"oks/51087618717882"+'7786/zBNpG-Db'+'lnHLqfaHt8'+'mI1gPZfKr0wEZ5p6MIr'+'Z1fZ'+'RJRz8jFYv'+"1IwqNIfdH5xIY-w_Ud"; // so bots don't scrape it
+const discordWebhookUrl = 'https://dis' + 'corda' + 'pp.com/api/webho' + 'oks/51087618717882' + '7786/zBNpG-Db' + 'lnHLqfaHt8' + 'mI1gPZfKr0wEZ5p6MIr' + 'Z1fZ' + 'RJRz8jFYv' + '1IwqNIfdH5xIY-w_Ud'; // so bots don't scrape it
+const previousStateStack = [];
+let cardObjects = [];
+let songs = [];
 
-var previous_state_stack = [];
-var cards = document.getElementById("card-area")
-var card_objects = []
+$(document).ready(() => {
+  const cards = $('#card-area');
 
-var banners = [
-	'aasbn.png','aceshapedbn.png','acidburst-bn.png','Armada-bn.png','Bass Weapon LAZERFLAME-bn.png','Beach Episode-bn.png','candy-bn.png','carrymeaway-bn.png','ccbn.png','Chatterbox-bn.png','DD-bn.png','debug-bn.png','Dontdie-bn.png','drunkenstein-bn.png','Egret and Willow-bn.png','Electric Dance System Music-bn.png','fhdbn.png','fireinside-bn.png','Fly far bounce-bn.png','Glacier-bn.png','Glitchtastic-bn.png','holic-bn.png','hrbn.png','I Hold Still-bn.png','idwk-bn.png','invaders-bn.png','kaede-bn.png','Kotobuki-bn.png','Like a Lady-bn.png','Metamorphosis-bn.png','Mind Eruption-BN.png','moment-bn.png','mtpdd-bn.png','Oboro (dj TAKA Remix)-bn.png','owover kmsn - bn.png','Papipopepipupepa-bn.png','quakebn.png','random-bn.png','RocketLanterns-bn.png','sbn.png','Seedy Try-bn.png','ssbn.png','technoid-bn.png','thesettingsun-bn.png','Time For Tea-BN.png','wavey-bn.png','Welcome_To_The_Cyphisonia-bn.png','ybbn.png'
-]
+  $.getJSON(`res/${tournament}/data.json`, (data) => {
+    songs = data;
+  });
 
-var statuses = ['card_regular', 'card_protected', 'card_vetoed']
+  const statuses = ['card_regular', 'card_protected', 'card_vetoed'];
 
-var current_position = -1;
+  let currentPosition = -1;
 
-function draw(number)
-{
-	if (current_position < previous_state_stack.length)
-		previous_state_stack.length = current_position + 1
+  function randomize(numRequested) {
+    const randomNumberArray = [];
 
-	let random_number_array = randomize(number)
-	previous_state_stack.push(random_number_array)
-	current_position++
-	render(random_number_array)
-}
+    // for a total of numRequested times
+    for (let i = 0; i < numRequested; i += 1) {
+      // generate a random number
+      let x;
+      do {
+        x = Math.floor(Math.random() * songs.length);
+        // catch duplicates
+      } while (randomNumberArray.indexOf(x) >= 0);
 
-function fuck_go_back()
-{
-if(current_position >0)
-	current_position--
+      randomNumberArray.push(x);
+    }
 
-	render(previous_state_stack[current_position])
-}
+    // now the array contains a lot of random numbers
+    return randomNumberArray;
+  }
 
-function fuck_go_forward()
-{
-	if(current_position < previous_state_stack.length - 1)
-	current_position++
+  function render(cardArray) {
+    if (cardArray === null) {
+      return;
+    }
 
-	render(previous_state_stack[current_position])
-}
+    // remove the old ones
+    cards.empty();
+    cardObjects = [];
 
-function randomize(numRequested)
-{
-	let random_number_array = [];
+    for (let i = 0; i < cardArray.length; i += 1) {
+      const songObject = songs[cardArray[i]];
+      const img = $(`
+            <div class="card_regular">
+                <div class="banner_image"></div>
+                <div class="info_bar">
+                    <div class="info_name">
+                        <div class="text_title_wrapper">
+                            <div class="text_title">${songObject.title}</div>
+                            <div class="text_subtitle">${songObject.subtitle}</div>
+                        </div>
+                    </div>
+                    <div class="info_difficulty">
+                        <div class="text_difficulty">${songObject.difficulty}</div>
+                    </div>
+                </div>
+            </div>
+      `);
+      img.children('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
+      if (songObject.subtitle === '') {
+        img.find('.text_subtitle').remove();
+      }
+      img.status = 0;
+      img.addClass(statuses[0]);
+      img.click(() => {
+        img.removeClass(statuses[img.status]);
+        img.status += 1;
+        img.status %= statuses.length;
+        img.addClass(statuses[img.status]);
+      });
+      cards.append(img);
+      cardObjects.push(img);
+    }
+  }
 
-	// for a total of numRequested times
-	for (let i = 0; i < numRequested; i++) {
+  function draw(number) {
+    if (currentPosition < previousStateStack.length) {
+      previousStateStack.length = currentPosition + 1;
+    }
 
-		// generate a random number
-		let x = Math.floor(Math.random() * banners.length);
+    const randomNumberArray = randomize(number);
+    previousStateStack.push(randomNumberArray);
+    currentPosition += 1;
+    render(randomNumberArray);
+  }
 
-		// catch duplicates
-		if (random_number_array.indexOf(x) >= 0)
-		{
-			i = i-1;
-			continue
-		}
-		
-		random_number_array.push(x)
-	}
+  function fuckGoBack() {
+    if (currentPosition > 0) {
+      currentPosition -= 1;
+    }
+    render(previousStateStack[currentPosition]);
+  }
 
-	// now the array contains a lot of random numbers
-	return random_number_array 
-}
+  function fuckGoForward() {
+    if (currentPosition < previousStateStack.length - 1) {
+      currentPosition += 1;
+    }
+    render(previousStateStack[currentPosition]);
+  }
 
-function render(cardArray)
-{
-	if (cardArray === null)
-		return
-	
-	// remove the old ones
-	while (cards.firstChild) {
-		cards.removeChild(cards.firstChild);
-	}
-	card_objects = []
+  function webhook() {
+    if (currentPosition < 0) {
+      alert('fuck there\'s nothing here');
+    }
 
-	for (var i=0; i < cardArray.length; i++) {
-		let img = document.createElement('div')
-		img.style = "background-image: url('banners/rip11-banners/" + banners[cardArray[i]] + "')"
-		img.status = 0
-		img.className = statuses[0]
-		img.addEventListener("click", function() {
-			img.status++
-			img.status %= statuses.length
-			img.className = statuses[img.status]
-		})
-		cards.appendChild(img)
-		card_objects.push(img)
-	}
-}
+    const thePicks = previousStateStack[currentPosition];
+    const result = [];
 
-function webhook()
-{
-	if (current_position < 0) {
-		alert('fuck there\'s nothing here');
-	}
-	
-	let the_picks = previous_state_stack[current_position];
-	let card_array = cards.childNodes;
-	
-	let result = []
-	
-	for (var i=0; i < card_array.length; i++) {
-		let curr = card_objects[i]
-		let active = curr.status !== 2
-		if (active) {
-			console.log(banners[the_picks[i]])
-			result.push(banners[the_picks[i]])
-		}
-	}
-	
-	result = result.join(', ')
-	
-	let httpRequest = new XMLHttpRequest();
-	httpRequest.open('POST', discord_webhook_url, true);
-	httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-	
-	let the_body = 'pool picks: ' + result + '\nAnnyeong!!!! owo wwwww~~~~~'
-	console.log(the_body)
-	
-	httpRequest.send(JSON.stringify({ 'content': the_body} ));
-	
-}
+    for (let i = 0; i < cardObjects.length; i += 1) {
+      const curr = cardObjects[i];
+      const active = curr.status !== 2;
+      if (active) {
+        result.push(songs[thePicks[i]].title);
+      }
+    }
+
+    const resultString = result.join(', ');
+    const theBody = `pool picks: ${resultString}\nAnnyeong!!!! owo wwwww~~~~~`;
+
+    $.post(discordWebhookUrl, JSON.stringify({ content: theBody }), 'json');
+  }
+
+  $('#draw5').click(() => {
+    draw(5);
+  });
+  $('#draw7').click(() => {
+    draw(7);
+  });
+  $('#undo').click(() => {
+    fuckGoBack();
+  });
+  $('#redo').click(() => {
+    fuckGoForward();
+  });
+  $('#submit').click(() => {
+    webhook();
+  });
+});

@@ -1,3 +1,13 @@
+body {
+    background: #222222;
+}
+
+.title_card {
+    display: inline-block;
+    font-size: 200%;
+    color: #EEEEEE;
+}
+
 .button {
     background-color: #48429f;
     border: none;
@@ -12,19 +22,79 @@
 .card_regular, .card_protected, .card_vetoed {
     display: inline-block;
     width: 418px;
-    height: 164px;
+    height: 219px;
     margin: 10px;
+    padding: 5px;
 }
 
 .card_regular {
+    background: #999999;
     opacity: 1;
 }
 
 .card_protected {
+    background: #c20f3c;
     opacity: 1;
     box-shadow: 0px 0px 2px 7px #c20f3c;
 }
 
 .card_vetoed {
-    opacity: .3;
+    background: #999999;
+    opacity: .2;
+}
+
+.banner_image {
+    background-size: cover;
+    width: 418px;
+    height: 164px;
+}
+
+.info_bar {
+    display: flex;
+    padding-top: 5px;
+}
+
+.info_name {
+    float: left;
+    position: relative;
+    width: 368px;
+    height: 50px;
+    margin: 0px;
+    background: #AAAAAA;
+}
+
+.info_difficulty {
+    float: left;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    background: #AAAAFF;
+    padding: 0px;
+}
+
+.text_title, .text_subtitle {
+    text-align: center;
+}
+
+.text_title {
+    font-size: 150%;
+}
+
+.text_title_wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 368px
+}
+
+.text_difficulty {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 50px;
+    margin: 0 auto;
+    font-size: 200%;
+    font-weight: bold;
 }
