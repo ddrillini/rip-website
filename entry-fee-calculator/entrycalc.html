@@ -40,10 +40,10 @@
               textareaValue += parseInt(cbs[i].value);
 				total_amount = textareaValue;
         }
-        if (textareaValue == 33)
+        <if (textareaValue == 33)
         {
           textareaValue = "28: you're entering all the tournaments, so you get $5 off!"
-			total_amount = 28;
+			total_amount = 28;>
         }
       }
        document.getElementById('textarea').value = textareaValue;
@@ -60,7 +60,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="one-half column" style="margin-top: 10%">
-				<h3>RIP10 Entry Fee Calculator</h3>
+				<h3>RIP11 Entry Fee Calculator</h3>
 			  <form name="form1" method=post>
 				<textarea id="textarea" name="type" rows="5" cols="35" onclick="this.focus();this.select();"></textarea><br>
 			  <div id="checkboxes">
@@ -71,16 +71,16 @@
 							<!--<label for="id2">ITG Doubles ($10)</label><br>-->
 						<input type="checkbox" id="id3" value="5" onclick="add_sub(this);"> Mods SRT ($5)<br>
 							<!--<label for="id3">Mods SRT ($5)<br>-->
-						<input type="checkbox" id="id4" value="5" onclick="add_sub(this);"> PIU Couples ($5)<br>
-							<!--<label for="id4">ITG Couples ($5)<br>-->
-						<input type="checkbox" id="id6" value="3" onclick="add_sub(this);"> Venue Fee ($3) (required)<br>
-							<!--<label for="id6">Venue Fee ($3)-->
+						<input type="checkbox" id="id4" value="10" onclick="add_sub(this);"> PIU Couples ($10)<br>
+							<!--<label for="id4">ITG Couples ($10)<br>-->
+						<input type="checkbox" id="id6" value="8" onclick="add_sub(this);"> Venue Fee ($8) (required)<br>
+							<!--<label for="id6">Venue Fee ($8)-->
 			  </div>
 			  </form>
 
 				<a id="the_link" href="http://paypal.me/ddrillini/3">
 					<b>Pay $<span id="amount">3</span> here (PayPal).</b>
-				</a> or Venmo @aipark.
+				</a> or Venmo @Benjamin-Tung.
 				<br><br><br><br><br><br>
         Mad shoutouts to Tucker for making this.
         <br><br>
