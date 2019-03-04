@@ -40,10 +40,10 @@
               textareaValue += parseInt(cbs[i].value);
 				total_amount = textareaValue;
         }
-        <if (textareaValue == 33)
+        if (textareaValue == 33)
         {
           textareaValue = "28: you're entering all the tournaments, so you get $5 off!"
-			total_amount = 28;>
+			total_amount = 28;
         }
       }
        document.getElementById('textarea').value = textareaValue;
