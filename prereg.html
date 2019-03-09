@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+
+	<!-- see readme.md -->
+
+  <head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>RIP 11 Registration Form</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+ -->
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  </head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns" style="margin-top: 10%">
+				<h3>RIP 11 Event Registration Form</h3>
+				
+				<h4>March 15th - 17th, 2019.</h4>
+				<h5><a href="https://www.facebook.com/events/184622442460015/">FB Event Page</a></h5>
+			  <form name="rip-11-form" id="rip-11-form" onchange="updateCosts(this)">
+	
+  
+				<div>
+					<h5>Personal Information</h5>
+					Real Name - <input type="text" id="name" name="name" required> (required)<br>
+					Handle - <input type="text" id="handle" name="handle" >
+				</div>
+				<div>
+					<h5>Would you be interested in Volunteering?</h5>
+					<input type="checkbox" id="volunteer" name="volunteer" value="yes"> Yes
+				</div>
+				<hr>
+				<div>
+					<h4>Which Tournaments Are You Entering?</h4>
+						<input type="checkbox" name="uiuc-student" id="uiuc-student" value="yes" onclick="toggleUIUC(this);"> Are you a UIUC student? (Students are exempt from entry fees)<br>
+						<div id="venue-fees" class="four columns" >
+							<input type="checkbox" name="singles" id="singles" value="10"> ITG Singles ($10) <br>
+							<input type="checkbox" name="doubles" id="doubles" value="10"> ITG Doubles ($10)<br>
+							<input type="checkbox" name="srt" id="srt" value="5"> Mods SRT ($5)<br>
+							<input type="checkbox" name="couples" id="couples" value="5"> ITG Couples ($5)<br>
+							<input type="checkbox" name="venue" id="venue" value="yes" checked="checked" disabled="disabled" > Venue Fee ($8) (required)<br>
+						</div>
+				<div>
+					<p>Singles Remote qualifiers (DL link on event page) - Saturday 10 AM</p>
+					<p>Doubles Saturday evening</p>
+					<p>Mods SRT Sunday 11 AM (You don't want to miss this)</p>
+					<p>Couples Sunday afternoon - evening. Most people find a partner day of. Matching outfits HIGHLY RECOMMENDED :P</p>
+					<div id="venue-toggle" >
+					<input type="radio" name="venue-type" value="8" checked="checked">($8)Pay Online / <input type="radio" name="venue-type" value="10">($10)Pay At Door 
+					</div>
+				</div>
+				 Though we will accept cash at the event, please pay online if you can. 
+If you prefer or require some other method of sending money, please contact Benjamin Tung at <a href="http://messenger.com/t/noticemebenpai">messenger.com/t/noticemebenpai</a>, or <b>benjamintung21@gmail.com</b>
+				<br>
+				<hr>
+				<h4>RIP 11 Merchandise</h4>
+				<h5>T-shirts</h5>
+				<div>
+				<img src="images/black-RIP-shirt.jpg" width="200"/><img src="images/white-RIP-shirt.jpg" width="200"/><img src="images/mbc3-shirt.png" width="200"/>
+				</div>
+				<div>
+					<input type="checkbox" name="black-rip-shirt" id="black-rip-shirt" value="20" onclick="shirtSelect(this);"> Black RIP 11 shirt (20$) <br>
+					<div style="display:none" value="asdf">
+						<input type="radio" name="black-rip-size" value="XS">XS
+						<input type="radio" name="black-rip-size" value="S">S
+						<input type="radio" name="black-rip-size" value="M">M
+						<input type="radio" name="black-rip-size" value="L">L
+						<input type="radio" name="black-rip-size" value="XL">XL
+						<input type="radio" name="black-rip-size" value="XXL">XXL
+					</div>
+				</div>
+				<div>
+					<input type="checkbox" name="white-rip-shirt" id="white-rip-shirt" value="20" onclick="shirtSelect(this);"> White RIP 11 shirt (20$) <br>
+					<div style="display:none">
+						<input type="radio" name="white-rip-size" value="XS">XS
+						<input type="radio" name="white-rip-size" value="S">S
+						<input type="radio" name="white-rip-size" value="M">M
+						<input type="radio" name="white-rip-size" value="L">L
+						<input type="radio" name="white-rip-size" value="XL">XL
+						<input type="radio" name="white-rip-size" value="XXL">XXL
+					</div>
+				</div>
+				<div>
+					<input type="checkbox" name="mod-srt-shirt" id="mod-srt-shirt" value="20" onclick="shirtSelect(this);"> Mods Boot Camp 3 shirt (20$) <br>
+					<div style="display:none">
+						<input type="radio" name="mod-srt-size" value="XS">XS
+						<input type="radio" name="mod-srt-size" value="S">S
+						<input type="radio" name="mod-srt-size" value="M">M
+						<input type="radio" name="mod-srt-size" value="L">L
+						<input type="radio" name="mod-srt-size" value="XL">XL
+						<input type="radio" name="mod-srt-size" value="XXL">XXL
+					</div>
+				</div>
+				<h5>Posters</h5>
+				<img src="images/stepchart-poster1-sample2.png" class="three columns" />
+				<div>
+					<input type="checkbox" name="stepchart-poster" id="stepchart-poster" value="15">($15) Stepchart Reference Poster (Shown on left)<br>
+					<input type="checkbox" name="mbc3-poster" id="mbc3-poster" value="15">($15) Mods Boot Camp 3 Poster (Design reveal at event)<br>
+					<input type="checkbox" name="rip11-poster" id="rip11-poster" value="15">($15) RIP11 Poster ($15, design TBD)<br>
+				</div>
+				<br><br><br><br><br><br>
+				<hr>
+
+				<h5><div id="totalCost">Your total cost comes out to: $8</div></h5>
+				You will be able to pay total on the next page<hr>
+				<button onclick="sendQuery(); return false;">Submit</button>
+				<input type="text" name="total" id="total" style="display:none" value="8">
+			  </form>
+
+				<a id="the_link" href="http://paypal.me/ddrillini/3">
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="./js/prereg.js"></script>
+</body>
+
+</html>
