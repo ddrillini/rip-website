@@ -43,6 +43,7 @@ function sendQuery() {
 		window.alert("Please enter your name");
 	} else {
 		$.ajax({
+			crossDomain: true,
 			type: "GET",
 			url: "https://script.google.com/macros/s/AKfycbzaJcuiVokuxAcdgmw1HX0sb00-xvA8zKZHxIyEEOebUt42Xxg/exec",
 			data: $("#rip-11-form").serialize(),
