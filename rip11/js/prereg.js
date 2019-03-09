@@ -64,7 +64,16 @@ function updateCosts(form) {
 			}
 		}
 	}
+	totalCost += parseInt(document.getElementById('donation').value);
 	document.getElementById('totalCost').innerHTML="Your total cost comes out to: $"+totalCost;
 	document.getElementById('total').value=totalCost;
 	console.log(totalCost);
 }
+
+$( document ).ready(function() {
+	shirtSelect(document.getElementById('black-rip-shirt'))
+	shirtSelect(document.getElementById('white-rip-shirt'))
+	shirtSelect(document.getElementById('mod-srt-shirt'))
+	toggleUIUC(document.getElementById('uiuc-student'))
+	updateCosts(document.getElementById('rip-11-form'))
+});
