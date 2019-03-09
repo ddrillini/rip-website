@@ -56,15 +56,23 @@ function sendQuery() {
 
 function updateCosts(form) {
 	var totalCost = 0;
+	
+	var donationVal = parseFloat(document.getElementById('donation').value);
+	if (donationVal < 0){
+		document.getElementById('donation').value = 0
+	}
+	
 	for(var i=0; i < form.elements.length; i++){
 		var e = form.elements[i];
 		if ($(e).is(":checkbox") || $(e).is(":radio")){
-			if (e.checked && e.value % 1 === 0 ){
+			if (e.checked && e.value % 1 === 0 && e.name != "venue"){
 				totalCost += parseInt(e.value);
+				console.log(e.name);
 			}
 		}
 	}
-	totalCost += parseInt(document.getElementById('donation').value);
+	totalCost += parseFloat(document.getElementById('donation').value);
+	totalCost = totalCost.toFixed(2);
 	document.getElementById('totalCost').innerHTML="Your total cost comes out to: $"+totalCost;
 	document.getElementById('total').value=totalCost;
 	console.log(totalCost);
