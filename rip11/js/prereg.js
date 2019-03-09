@@ -1,45 +1,5 @@
-function shirtSelect(el) {
-	
-	var innerDiv = $(el).siblings();
-	if (el.checked){
-		innerDiv.css("display", "block");
-		var innerInputs = $(innerDiv).children();
-		innerInputs[0].checked = true;
-	} else {
-		innerDiv.css("display", "none");
-		var innerInputs = $(innerDiv).children();
-		for (var i=0, len = innerInputs.length; i < len; i++) {
-			innerInputs[i].checked = false;
-		}
-	}
-}
- 
-function toggleUIUC(student)	{
-
-	var cbs = document.getElementById('venue-fees').getElementsByTagName('input');
-	if (student.checked){
-		for (var i = 0, len = cbs.length; i<len; i++) {
-			if ( cbs[i].type === 'checkbox') {
-				//cbs[i].value = 0;
-			}
-		}
-		$('#venue-toggle').css("display", "none");
-		document.getElementById('venue-toggle').getElementsByTagName('input')[0].checked = true;
-		document.getElementById('venue-toggle').getElementsByTagName('input')[1].checked = false;
-	} else {
-		var costSpread = [10,10,5,5,8];
-		for (var i = 0, len = cbs.length; i<len; i++) {
-			if ( cbs[i].type === 'checkbox') {
-				//cbs[i].value = costSpread[i];
-			}
-		}
-		$('#venue-toggle').css("display", "block");
-		document.getElementById('venue-toggle').getElementsByTagName('input')[0].checked = true;
-	}
-}
- 
 function sendQuery() {
-	if (document.getElementById('name').value.length == 0){
+	if ($('#name').val().length == 0){
 		window.alert("Please enter your name");
 	} else {
 		$.ajax({
@@ -50,51 +10,80 @@ function sendQuery() {
 			dataType: "json"
 		}).done(function(){
 			//window.location.href = "http://rip.ddrillini.club/rip11/payment.html?total="+document.getElementById('total').value;
-			window.location.href = "payment.html?total="+document.getElementById('total').value;
+			window.location.href = "payment.html?total="+$('#total').val();
 		});
 	}
 }
 
-function updateCosts(form) {
-	var totalCost = 0;
-	
-	var donationVal = parseFloat(document.getElementById('donation').value);
-	if (donationVal < 0){
-		document.getElementById('donation').value = 0
-	}
-	
-	var uiucVal = document.getElementById('uiuc-student').checked;
-	console.log(uiucVal);
-	for(var i=0; i < form.elements.length; i++){
-		var e = form.elements[i];
-		if ($(e).is(":checkbox") || $(e).is(":radio")){
-			if (e.checked && e.value % 1 === 0 && e.name != "venue"){
-				
-				if (e.name == "singles" || e.name == "doubles" || e.name == "couples" || e.name == "srt" || e.name == "venue-type"){
-					if (!uiucVal){
-						totalCost += parseInt(e.value);
-						console.log(e.name + " - " + e.value);
-					} else {
-						console.log(e.name + " -- " + 0);
-					}
-				} else {
-					totalCost += parseInt(e.value);
-					console.log(e.name + " --- " + e.value);
-				}
+function updateCosts() {
+	const uiucVal = $('#uiuc-student').is(':checked');
+	let totalCost = 0;
+	const venueFee = parseInt($('input[name="venue-type-op"]:checked').val());
+	let trueVenueFee;
+
+	// venue and tournament fees
+	if (uiucVal) {
+		trueVenueFee = 0;
+		$('.pay').hide();
+		$('.exempt').show();
+	} else {
+		trueVenueFee = venueFee;
+		$('.pay').show();
+		$('.exempt').hide();
+		$('.tourney').each((i, e) => {
+			if ($(e).is(':checked')) {
+				totalCost += parseInt($(e).val());
 			}
+		});
+	}
+	$('#venue-type').val(venueFee);
+	totalCost += trueVenueFee;
+	
+	// merch
+	$('.merch').each((i, e) => {
+		if ($(e).is(':checked')) {
+			totalCost += parseInt($(e).val());
+		}
+	});
+
+	// donation
+	const donationVal = parseFloat($('#donation-op').val());
+	var trueDonationVal = 0;
+	if (donationVal !== NaN && donationVal >= 0) {
+		$('#donation-op').removeClass('is-error');
+		trueDonationVal = parseFloat(donationVal.toFixed(2));
+	} else if ($('#donation-op').val() === "") {
+		$('#donation-op').removeClass('is-error');
+		trueDonationVal = 0;
+	} else {
+		$('#donation-op').addClass('is-error');
+		trueDonationVal = 0;
+	}
+	$('#donation').val(trueDonationVal);
+	totalCost += trueDonationVal;
+	
+	// total up
+	$('#totalCost').text(totalCost);
+	$('#total').val(totalCost);
+	
+	// display shirt sizes
+	const shirts = ['black-rip', 'white-rip', 'mod-srt'];
+	for (let shirt of shirts) {
+		const shirtCheck = '#' + shirt + '-shirt';
+		const shirtOp = '#' + shirt + '-shirt-options';
+		const shirtSize = '#' + shirt + '-size';
+		const shirtSizeOp = shirt + '-size-op';
+		if ($(shirtCheck).is(':checked')) {
+			$(shirtOp).show();
+			$(shirtSize).val($('input[name="'+shirtSizeOp+'"]:checked').val())
+		} else {
+			$(shirtOp).hide();
+			$(shirtSize).val("");
 		}
 	}
-	totalCost += parseFloat(document.getElementById('donation').value);
-	totalCost = totalCost.toFixed(2);
-	document.getElementById('totalCost').innerHTML="Your total cost comes out to: $"+totalCost;
-	document.getElementById('total').value=totalCost;
-	console.log(totalCost);
 }
 
 $( document ).ready(function() {
-	shirtSelect(document.getElementById('black-rip-shirt'))
-	shirtSelect(document.getElementById('white-rip-shirt'))
-	shirtSelect(document.getElementById('mod-srt-shirt'))
-	toggleUIUC(document.getElementById('uiuc-student'))
-	updateCosts(document.getElementById('rip-11-form'))
+	$('#rip-11-form').change(() => {updateCosts()});
+	updateCosts();
 });
