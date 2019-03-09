@@ -20,17 +20,17 @@ function toggleUIUC(student)	{
 	if (student.checked){
 		for (var i = 0, len = cbs.length; i<len; i++) {
 			if ( cbs[i].type === 'checkbox') {
-				cbs[i].value = 0;
+				//cbs[i].value = 0;
 			}
 		}
 		$('#venue-toggle').css("display", "none");
-		document.getElementById('venue-toggle').getElementsByTagName('input')[0].checked = false;
+		document.getElementById('venue-toggle').getElementsByTagName('input')[0].checked = true;
 		document.getElementById('venue-toggle').getElementsByTagName('input')[1].checked = false;
 	} else {
 		var costSpread = [10,10,5,5,8];
 		for (var i = 0, len = cbs.length; i<len; i++) {
 			if ( cbs[i].type === 'checkbox') {
-				cbs[i].value = costSpread[i];
+				//cbs[i].value = costSpread[i];
 			}
 		}
 		$('#venue-toggle').css("display", "block");
