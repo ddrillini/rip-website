@@ -62,12 +62,24 @@ function updateCosts(form) {
 		document.getElementById('donation').value = 0
 	}
 	
+	var uiucVal = document.getElementById('uiuc-student').checked;
+	console.log(uiucVal);
 	for(var i=0; i < form.elements.length; i++){
 		var e = form.elements[i];
 		if ($(e).is(":checkbox") || $(e).is(":radio")){
 			if (e.checked && e.value % 1 === 0 && e.name != "venue"){
-				totalCost += parseInt(e.value);
-				console.log(e.name);
+				
+				if (e.name == "singles" || e.name == "doubles" || e.name == "couples" || e.name == "srt" || e.name == "venue-type"){
+					if (!uiucVal){
+						totalCost += parseInt(e.value);
+						console.log(e.name + " - " + e.value);
+					} else {
+						console.log(e.name + " -- " + 0);
+					}
+				} else {
+					totalCost += parseInt(e.value);
+					console.log(e.name + " --- " + e.value);
+				}
 			}
 		}
 	}
