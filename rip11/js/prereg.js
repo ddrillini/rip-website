@@ -48,7 +48,7 @@ function sendQuery() {
 			data: $("#rip-11-form").serialize(),
 			dataType: "json"
 		}).done(function(){
-			window.location.href = "rip.ddrillini.club/rip11/payment.html?total="+document.getElementById('total').value;
+			window.location.href = "./payment.html?total="+document.getElementById('total').value;
 			//window.location.href = "payment.html?total="+document.getElementById('total').value;
 		});
 	}
