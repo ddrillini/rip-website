@@ -60,7 +60,7 @@
 				<div class="form-group">
 					<label class="form-checkbox">
 						<input type="checkbox" name="uiuc-student" id="uiuc-student" value="yes">
-						<i class="form-icon"></i> I am a UIUC student. (Students are exempt from entry fees.)
+						<i class="form-icon"></i> I am a UIUC student. (Students are exempt from entry fees, because they are covered by the student funding board.)
 					</label>
 				</div>
 			</fieldset>
@@ -73,7 +73,7 @@
 						<i class="form-icon"></i> ITG Singles
 						<span class="label label-primary pay">$10</span>
 						<span class="label label-secondary exempt">fee exempt</span>
-						<br><em>Saturday 10 AM. Remote qualifiers (DL link on event page).</em>
+						<br><em>Saturday 10 AM. Remote qualifiers that must be submit before the event. (DL link on event page).</em>
 					</label>
 				</div>
 				<div class="form-group">
@@ -263,7 +263,6 @@
 			<div class="divider"></div>
 
 			<h2>Payment</h2>
-			<p>The venue fee is required for non-UIUC-students. It is $8 if you pay online, or $10 at the door.</p>
 			<fieldset>
 				<div class="form-group" id="venue-toggle">
 					<label class="form-radio">
@@ -281,14 +280,11 @@
 				</div>
 				<input type="hidden" name="venue-type" id="venue-type">
 			</fieldset>
-			<p>Though we will accept cash at the event, please pay online if you can (and enjoy the lower venue fee). 
-					If you prefer or require some other method of sending money,
-					please contact Benjamin Tung at <a href="http://messenger.com/t/noticemebenpai">messenger.com/t/noticemebenpai</a>,
-					or <strong>benjamintung21@gmail.com</strong></p>
+			
 			<h5>Your total cost comes out to: <mark><strong>$<span id="totalCost">8.00</span></strong></mark></h5>
 			<div>
 				<p>Please click the Submit button to complete registration.
-				You can make an online payment on the next page.</p>
+				You can make an online payment on the next page, or pay at the door.</p>
 				
 			</div>
 
@@ -297,9 +293,10 @@
 			<!-- <button class="btn btn-primary" id="submit-button">Submit</button> -->
 			<button class="btn btn-primary" onclick="sendQuery(); return false;">Submit</button>
 			<input type="hidden" name="total" id="total" value="0">
-			
+
 		</form>
 	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="./js/prereg.js"></script>
 </body>
