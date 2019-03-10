@@ -2,6 +2,10 @@ function sendQuery() {
 	if ($('#name').val().length == 0){
 		window.alert("Please enter your name");
 	} else {
+		// see comment @ bottom of file on this same commit
+		// $("#submit-button").one('click', function(e){
+		// 	sendQuery();
+		// });
 		$.ajax({
 			crossDomain: true,
 			type: "GET",
@@ -83,7 +87,18 @@ function updateCosts() {
 	}
 }
 
+// https://learn.jquery.com/using-jquery-core/document-ready/
+// Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
+// AKA code inside this will only run once the page is fully loaded.
 $( document ).ready(function() {
 	$('#rip-11-form').change(() => {updateCosts()});
 	updateCosts();
+
+	// TODO: register the click event handler for the submit button
+	// I tried this, but it made the page not redirect to the next one so I"m bailing. -ian
+
+	// via https://stackoverflow.com/a/13686694/1234621
+	// $("#submit-button").one('click', function(e){
+	// 	sendQuery();
+	// });
 });

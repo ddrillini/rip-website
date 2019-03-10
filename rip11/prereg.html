@@ -247,7 +247,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="divider"></div>
 
@@ -291,8 +291,13 @@
 				You can make an online payment on the next page.</p>
 				
 			</div>
+
+			<!-- TODO: use jquery .one to prevent this from being clicked more than once -->
+			<!-- See comment in prereg.js -ian -->
+			<!-- <button class="btn btn-primary" id="submit-button">Submit</button> -->
 			<button class="btn btn-primary" onclick="sendQuery(); return false;">Submit</button>
 			<input type="hidden" name="total" id="total" value="0">
+			
 		</form>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
