@@ -97,6 +97,11 @@ $( document ).ready(function() {
 	// TODO: register the click event handler for the submit button
 	// I tried this, but it made the page not redirect to the next one so I"m bailing. -ian
 
+	// Daikyi:
+	// probably just set a flag variable that sets to true if it hits the sendQuery() else block
+	// store it in some hidden form control
+	// and only execute the ajax call if the flag is false
+
 	// via https://stackoverflow.com/a/13686694/1234621
 	// $("#submit-button").one('click', function(e){
 	// 	sendQuery();
