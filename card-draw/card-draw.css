@@ -1,22 +1,37 @@
 body {
     background: #222222;
+    font-family: 'Roboto', sans-serif;
+    padding: 0.5em;
 }
 
 .title_card {
     display: inline-block;
-    font-size: 200%;
-    color: #EEEEEE;
+    height: 60px;
+    padding-right: 1em;
+    vertical-align: bottom;
 }
 
 .button {
+    display: inline-block;
     background-color: #48429f;
     border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    height: 60px;
+}
+
+.button_like {
+    display: inline-block;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 16px;
+    vertical-align: center;
+    height: 25px;
 }
 
 .card_regular, .card_protected, .card_vetoed {
@@ -78,7 +93,12 @@ body {
 }
 
 .text_title {
+    font-weight: 700;
     font-size: 150%;
+}
+
+.text_subtitle {
+    font-weight: 400;
 }
 
 .text_title_wrapper {
