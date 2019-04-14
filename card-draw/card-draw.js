@@ -165,51 +165,60 @@ $(document).ready(() => {
     $.post(discordWebhookUrl, JSON.stringify({ content: theBody }), 'json');
   }
 
-  $('#draw5').click(() => {
-    draw(5);
-  });
-  $('#draw7').click(() => {
-    draw(7);
-  });
-  $('#undo').click(() => {
-    fuckGoBack();
-  });
-  $('#redo').click(() => {
-    fuckGoForward();
-  });
-  $('#submit').click(() => {
-    webhook();
+  $('#draw5').on ({
+    click: function() {
+        draw(5);
+      },
+    mouseenter: function() {
+      document.getElementById('draw5').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('draw5').style.outline = '';
+      }
   });
 
-  //make outline for buttons during click
-  $('#draw5').mousedown(() => {
-    document.getElementById('draw5').style.outline = '3px solid rgb(65,108,166)';
+  $('#draw7').on({
+    click: function() {
+        draw(7);
+      },
+    mouseenter: function() {
+      document.getElementById('draw7').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('draw7').style.outline = '';
+      }
   });
-  $('#draw5').mouseup(() => {
-    document.getElementById('draw5').style.outline = '';
+  $('#undo').on({
+    click: function() {
+        fuckGoBack();
+      },
+    mouseenter: function() {
+      document.getElementById('undo').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('undo').style.outline = '';
+      }
   });
-  $('#draw7').mousedown(() => {
-    document.getElementById('draw7').style.outline = '3px solid rgb(65,108,166)';
+  $('#redo').on({
+    click: function() {
+        fuckGoForward();
+      },
+    mouseenter: function() {
+      document.getElementById('redo').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('redo').style.outline = '';
+      }
   });
-  $('#draw7').mouseup(() => {
-    document.getElementById('draw7').style.outline = '';
-  });
-  $('#undo').mousedown(() => {
-    document.getElementById('undo').style.outline = '3px solid rgb(65,108,166)';
-  });
-  $('#undo').mouseup(() => {
-    document.getElementById('undo').style.outline = '';
-  });
-  $('#redo').mousedown(() => {
-    document.getElementById('redo').style.outline = '3px solid rgb(65,108,166)';
-  });
-  $('#redo').mouseup(() => {
-    document.getElementById('redo').style.outline = '';
-  });
-  $('#submit').mousedown(() => {
-    document.getElementById('submit').style.outline = '3px solid rgb(65,108,166)';
-  });
-  $('#submit').mouseup(() => {
-    document.getElementById('submit').style.outline = '';
+  $('#submit').on({
+    click: function() {
+            webhook();
+      },
+    mouseenter: function() {
+      document.getElementById('submit').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('submit').style.outline = '';
+      }
   });
 });
