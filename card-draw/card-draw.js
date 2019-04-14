@@ -10,13 +10,23 @@ const previousStateStack = [];
 let cardObjects = [];
 let songs = [];
 
+
 // when the webpage is finished loading
 $(document).ready(() => {
   const cards = $('#card-area');
 
   // load the song data
-  $.getJSON(`res/${tournament}/data.json`, (data) => {
+  // This may fail (eg when you're running a local copy of the site and
+  // accessing via file:// urls).
+  var jqXHR = $.getJSON(`res/${tournament}/data.json`, (data) => {
     songs = data;
+  })
+
+  // Register a failure handler.
+  jqXHR.fail(function() {
+    var str = "Fail to load JSON. Stopping the page from loading.";
+    alert(str)
+    throw new Error(str);
   });
 
   const statuses = ['card_regular', 'card_protected', 'card_vetoed'];
