@@ -170,4 +170,36 @@ $(document).ready(() => {
   $('#submit').click(() => {
     webhook();
   });
+
+  //make outline for buttons during click
+  $('#draw5').mousedown(() => {
+    document.getElementById('draw5').style.outline = '3px solid rgb(65,108,166)';
+  });
+  $('#draw5').mouseup(() => {
+    document.getElementById('draw5').style.outline = '';
+  });
+  $('#draw7').mousedown(() => {
+    document.getElementById('draw7').style.outline = '3px solid rgb(65,108,166)';
+  });
+  $('#draw7').mouseup(() => {
+    document.getElementById('draw7').style.outline = '';
+  });
+  $('#undo').mousedown(() => {
+    document.getElementById('undo').style.outline = '3px solid rgb(65,108,166)';
+  });
+  $('#undo').mouseup(() => {
+    document.getElementById('undo').style.outline = '';
+  });
+  $('#redo').mousedown(() => {
+    document.getElementById('redo').style.outline = '3px solid rgb(65,108,166)';
+  });
+  $('#redo').mouseup(() => {
+    document.getElementById('redo').style.outline = '';
+  });
+  $('#submit').mousedown(() => {
+    document.getElementById('submit').style.outline = '3px solid rgb(65,108,166)';
+  });
+  $('#submit').mouseup(() => {
+    document.getElementById('submit').style.outline = '';
+  });
 });
