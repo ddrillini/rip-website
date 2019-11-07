@@ -39,8 +39,8 @@ $(document).ready(() => {
     // for each song
     for (let i = 0; i < songs.length; i += 1) {
       let diff_in_bound = diff_lo <= songs[i].difficulty && songs[i].difficulty <= diff_hi;
-      let ok_pool = mode !== 'pool' || !songs[i].isDbelOnly;
-      let ok_dbel = mode !== 'dbel' || !songs[i].isPoolOnly;
+      let ok_pool = (mode !== 'pool' || songs[i].modes !== 'DE');
+      let ok_dbel = (mode !== 'dbel' || songs[i].modes !== 'Pool');
       // only add the song to the array if it satisfies difficulty and mode conditions
       if (diff_in_bound && ok_pool && ok_dbel) {
         goodSongIndicesArray.push(i);

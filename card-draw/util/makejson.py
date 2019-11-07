@@ -43,7 +43,7 @@ def parse_file(path):
         if title.startswith(('(DE)', '(Pool)')):
             # this code looks nasty lol -sangyeol
             modes = 'DE' if title.startswith('(DE)') else 'Pool'
-            title = title[len('(DE) '):] if title.startswith('(DE)') else title[len('(Pool) ':]
+            title = title[len('(DE) '):] if title.startswith('(DE)') else title[len('(Pool) '):]
         else:
             modes = 'All' ## song available in both Pool and DE
         return {'title': title, 'subtitle': subtitle, 'difficulty': difficulty, 'modes': modes}
