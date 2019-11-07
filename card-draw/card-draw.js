@@ -33,45 +33,45 @@ $(document).ready(() => {
 
   let currentPosition = -1;
 
-  // param: number of cards you want
+  // return: array of indices of all acceptable songs
+  function getGoodSongIndices(diff_lo, diff_hi, mode) {
+    const goodSongIndicesArray = [];
+    // for each song
+    for (let i = 0; i < songs.length; i += 1) {
+      let diff_in_bound = diff_lo <= songs[i].difficulty && songs[i].difficulty <= diff_hi;
+      let ok_pool = mode !== 'pool' || !songs[i].isDbelOnly;
+      let ok_dbel = mode !== 'dbel' || !songs[i].isPoolOnly;
+      // only add the song to the array if it satisfies difficulty and mode conditions
+      if (diff_in_bound && ok_pool && ok_dbel) {
+        goodSongIndicesArray.push(i);
+      }
+    }
+    return goodSongIndicesArray;
+  }
+
+  // param: number of cards you want, difficulty bounds lo/hi, mode string
   // return: array of random integers from set of all possible songs
-  function randomize(numRequested) {
-    const randomNumberArray = [];
+  // there can be fewer cards than numRequested if not enough songs qualify
+  function randomize(numRequested, diff_lo, diff_hi, mode) {
+    const chosenSongIndicesArray = [];
+    const goodSongIndicesArray = getGoodSongIndices(diff_lo, diff_hi, mode);
 
-    // for a total of numRequested times
-    for (let i = 0; i < numRequested; i += 1) {
-      // generate a random number
-      let x;
-      let condition = true;
-      do {
-        // generate a random number on the range 0, total # songs - 1
-        x = Math.floor(Math.random() * songs.length);
+    // for a total of numRequested times (or until no good songs left)
+    for (let i = 0; i < numRequested && goodSongIndicesArray.length > 0; i += 1) {
+      // pick a random item from the good song list
+      let x = Math.floor(Math.random() * goodSongIndicesArray.length);
+      let songIndex = goodSongIndicesArray[x];
+      
+      // add the chosen song to the output
+      chosenSongIndicesArray.push(songIndex);
 
-        // spaghettic code i'm sorry -ian
-        if (document.getElementById("thirteens").checked)
-        {
-          // exit once you find an int not in the list
-          // AND an int that doesn't correspond to a 13
-          let check_if_in_list = randomNumberArray.indexOf(x) >= 0;
-          let check_if_thirteen = songs[x].difficulty == 13 ? true : false ;
-          // if either condition is true, you want to keep looping
-          // i.e. set cond to true
-          condition = check_if_in_list || check_if_thirteen;
-          console.log("yeeted 13 " + songs[x].title);
-        } else {
-          // exit once you find an int not in the list
-          condition = randomNumberArray.indexOf(x) >= 0;
-        }
-      } while (condition);
-
-      // and with a difficulty number that is not 13
-      // songs[x].difficulty != 13
-
-      randomNumberArray.push(x);
+      // remove the chosen song from the pool
+      goodSongIndicesArray[x] = goodSongIndicesArray[goodSongIndicesArray.length-1];
+      goodSongIndicesArray.pop();
     }
 
     // now the array contains a lot of random numbers
-    return randomNumberArray;
+    return chosenSongIndicesArray;
   }
 
   function render(cardArray) {
@@ -122,8 +122,14 @@ $(document).ready(() => {
     if (currentPosition < previousStateStack.length) {
       previousStateStack.length = currentPosition + 1;
     }
-
-    const randomNumberArray = randomize(number);
+    const diff_lo = parseInt($('#diff_lo').val());
+    const diff_hi = parseInt($('#diff_hi').val());
+    const mode = $('input[type=radio][name=round]:checked').val();
+    if (isNaN(diff_lo) || isNaN(diff_hi)) {
+      console.log('bad parameters: '+[diff_lo, diff_hi, mode]);
+      return;
+    }
+    const randomNumberArray = randomize(number, diff_lo, diff_hi, mode);
     previousStateStack.push(randomNumberArray);
     currentPosition += 1;
     render(randomNumberArray);

@@ -10,25 +10,41 @@
         <script type="text/javascript" src="card-draw.js"></script>
     </head>
     <body>
-        <div class="title_card">
-            <img src="rip11web.svg" width="150px">
-        </div>
+        <div class="tool_bar">
+            <div class="tool_group">
+            <div class="title_card">
+                <img src="rip11web.svg" width="150px">
+            </div>
             <input id="draw5" type="submit" class="button" value="Draw 5">
             <input id="draw7" type="submit" class="button" value="Draw 7">
-        
-
-        <div class="button_like">
-            <label>
-                <input id="thirteens" type="checkbox">
-                Disable 13s
-            </label>
+            <div class="options">
+                <div>
+                    <label>
+                        Difficulty:
+                        <input id="diff_lo" type="text" class="diff_input" value="9">
+                        &ndash;
+                        <input id="diff_hi" type="text" class="diff_input" value="14">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="round_pool" name="round" type="radio" value="pool" checked> Pool
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input id="round_dbel" name="round" type="radio" value="dbel" > DE
+                    </label>
+                </div>
+            </div>
         </div>
 
-        <div style="float: right;">
-            <input id="undo" type="submit" class="button" value="Undo">
-            <input id="redo" type="submit" class="button" value="Redo">
+            <div class="tool_group">
+                <input id="undo" type="submit" class="button" value="Undo">
+                <input id="redo" type="submit" class="button" value="Redo">
 
-            <input id="submit" type="submit" class="button" value="Send">
+                <input id="submit" type="submit" class="button" value="Send">
+            </div>
         </div>
 
         <hr>
