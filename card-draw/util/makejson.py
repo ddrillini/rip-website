@@ -6,15 +6,15 @@ from pathlib import Path
 from shutil import copyfile
 
 # the input directory that contains individual song directories
-PACK_DIR_PATH = 'RIP11'
+PACK_DIR_PATH = 'RIP11.5'
 # the output directory you want your '/banners' and 'data.json'
-OUT_DIR_PATH = 'RIP11out'
+OUT_DIR_PATH = 'RIP115out'
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 def is_banner_path(fname):
-    return fname.lower() == 'bn.png' or fname.replace(' ','').lower().endswith('-bn.png')
+    return fname.lower() == 'bn.png' or fname.replace(' ','').lower().endswith('bn.png') or fname.lower() == 'dead music.png'
 
 def parse_file(path):
     title = None
