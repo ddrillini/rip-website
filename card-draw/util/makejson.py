@@ -21,6 +21,7 @@ def parse_file(path):
     subtitle = None
     difficulty = None
     modes = None ## signals which part of tournament is a song available in (Pool, DE, or All)
+    isNoCmod = False
 
     with path.open() as f:
         text = ''.join([line.strip() for line in f if not line.startswith('//')])
@@ -46,7 +47,10 @@ def parse_file(path):
             title = title[len('(DE) '):] if title.startswith('(DE)') else title[len('(Pool) '):]
         else:
             modes = 'All' ## song available in both Pool and DE
-        return {'title': title, 'subtitle': subtitle, 'difficulty': difficulty, 'modes': modes}
+        if title.lower().endswith('(no cmod)'):
+            title = title[:-len('(no cmod) ')]
+            isNoCmod = True
+        return {'title': title, 'subtitle': subtitle, 'difficulty': difficulty, 'modes': modes, 'is_no_cmod': isNoCmod}
 
 def handle_song_dir(pack_dir_path, out_dir_path):
     # Search the pack directory. Each directory should contain one banner file

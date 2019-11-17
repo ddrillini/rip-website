@@ -91,7 +91,9 @@ $(document).ready(() => {
                 <div class="info_bar">
                     <div class="info_name">
                         <div class="text_title_wrapper">
-                            <div class="text_title">${songObject.title}</div>
+                            <div class="text_title">
+                                ${songObject.title}<span class="no_cmod_box">NO CMOD</span>
+                            </div>
                             <div class="text_subtitle">${songObject.subtitle}</div>
                         </div>
                     </div>
@@ -102,6 +104,9 @@ $(document).ready(() => {
             </div>
       `);
       img.children('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
+      if (!songObject.is_no_cmod) {
+        img.find('.no_cmod_box').remove();
+      }
       if (songObject.subtitle === '') {
         img.find('.text_subtitle').remove();
       }
