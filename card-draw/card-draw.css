@@ -62,22 +62,28 @@ body {
     width: 418px;
     height: 219px;
     margin: 10px;
-    padding: 5px;
+    padding: 12px;
+    padding-bottom: 0px;
+    box-shadow: 5px 5px 2px 2px #111111;
+    border-radius: 8px;
 }
 
 .card_regular {
-    background: #999999;
+    background: #404040;
+    border: 4px solid #404040;
     opacity: 1;
 }
 
 .card_protected {
-    background: #c20f3c;
+    background: #48429f;
+    border: 4px solid #AAAAFF;
     opacity: 1;
-    box-shadow: 0px 0px 2px 7px #c20f3c;
+    box-shadow: 5px 5px 2px 2px #888888;
 }
 
 .card_vetoed {
-    background: #999999;
+    background: #404040;
+    border: 4px solid #404040;
     opacity: .2;
 }
 
@@ -89,7 +95,6 @@ body {
 
 .info_bar {
     display: flex;
-    padding-top: 5px;
 }
 
 .info_name {
@@ -98,7 +103,6 @@ body {
     width: 368px;
     height: 50px;
     margin: 0px;
-    background: #AAAAAA;
 }
 
 .info_difficulty {
@@ -107,7 +111,7 @@ body {
     width: 50px;
     height: 50px;
     margin-left: 5px;
-    background: #AAAAFF;
+    color: #AAAAFF;
     padding: 0px;
 }
 
@@ -124,7 +128,8 @@ body {
 }
 
 .text_title, .text_subtitle {
-    text-align: center;
+    color: #CCCCCC;
+    text-align: left;
 }
 
 .text_title {
@@ -147,7 +152,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    text-align: center;
+    text-align: right;
     width: 50px;
     margin: 0 auto;
     font-size: 200%;
