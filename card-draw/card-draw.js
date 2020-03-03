@@ -3,7 +3,7 @@
 // I have opted for very verbose comments with the intent
 // that less-JS-experienced clubmembers may open this in the future.
 
-const tournament = 'rip115';
+const tournament = 'rip12';
 
 const discordWebhookUrl = 'https://dis' + 'corda' + 'pp.com/api/webho' + 'oks/51087618717882' + '7786/zBNpG-Db' + 'lnHLqfaHt8' + 'mI1gPZfKr0wEZ5p6MIr' + 'Z1fZ' + 'RJRz8jFYv' + '1IwqNIfdH5xIY-w_Ud'; // so bots don't scrape it
 const previousStateStack = [];
@@ -13,7 +13,7 @@ let songs = [];
 
 // when the webpage is finished loading
 $(document).ready(() => {
-  const cards = $('#card-area');
+  const cards = $('#card_area');
 
   // load the song data
   // This may fail (eg when you're running a local copy of the site and
@@ -87,23 +87,34 @@ $(document).ready(() => {
       const songObject = songs[cardArray[i]];
       const img = $(`
             <div class="card_regular">
-                <div class="banner_image"></div>
-                <div class="info_bar">
-                    <div class="info_name">
-                        <div class="text_title_wrapper">
-                            <div class="text_title">
-                                ${songObject.title}<span class="no_cmod_box">NO CMOD</span>
+                <div class="card_bound">
+                    <div class="card_body">
+                        <div class="info_bar">
+                            <div class="info_title">
+                                <div class="text_title">${songObject.title}</div>
                             </div>
-                            <div class="text_subtitle">${songObject.subtitle}</div>
+                            <div class="info_difficulty">
+                                <div class="text_difficulty_marker">Lv</div>
+                                <div class="text_difficulty">${songObject.difficulty}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info_difficulty">
-                        <div class="text_difficulty">${songObject.difficulty}</div>
+                        <div class="banner_image"></div>
+                        <div class="content_bar">
+                            <div class="info_content_title">
+                                <div class="text_content_title">${songObject.title}</div>
+                            </div>
+                            <div class="info_content_subtitle">
+                                <div class="text_content_subtitle">${songObject.subtitle}</div>
+                            </div>
+                            <div class="info_content_cmod">
+                                <div class="no_cmod_box">NO CMOD</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
       `);
-      img.children('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
+      img.find('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
       if (!songObject.is_no_cmod) {
         img.find('.no_cmod_box').remove();
       }
