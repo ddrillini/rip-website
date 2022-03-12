@@ -14,7 +14,7 @@ let songs = [];
 // when the webpage is finished loading
 $(document).ready(() => {
   const cards = $('#card_area');
-  const sidebar = $('#sidebar_card_area');
+  const cards_side = $('#sidebar_card_area');
 
   // load the song data
   // This may fail (eg when you're running a local copy of the site and
@@ -82,7 +82,7 @@ $(document).ready(() => {
 
     // remove the old ones
     cards.empty();
-    sidebar.empty();
+    cards_side.empty();
     cardObjects = [];
 
     for (let i = 0; i < cardArray.length; i += 1) {
@@ -143,7 +143,7 @@ $(document).ready(() => {
         img_side.addClass(statuses[img.status]);
       });
       cards.append(img);
-      sidebar.append(img_side);
+      cards_side.append(img_side);
       cardObjects.push(img);
     }
   }
@@ -271,9 +271,9 @@ $(document).ready(() => {
   });
   $('#hide_vetoed').click(() => {
     const mode = $('input[name=hide_vetoed]').is(':checked');
-    sidebar.removeClass('hide_vetoed');
+    cards_side.removeClass('hide_vetoed');
     if (mode) {
-      sidebar.addClass('hide_vetoed');
+      cards_side.addClass('hide_vetoed');
     }
   });
 });
