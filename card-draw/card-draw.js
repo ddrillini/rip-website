@@ -14,6 +14,7 @@ let songs = [];
 // when the webpage is finished loading
 $(document).ready(() => {
   const cards = $('#card_area');
+  const sidebar = $('#sidebar_card_area');
 
   // load the song data
   // This may fail (eg when you're running a local copy of the site and
@@ -81,6 +82,7 @@ $(document).ready(() => {
 
     // remove the old ones
     cards.empty();
+    sidebar.empty();
     cardObjects = [];
 
     for (let i = 0; i < cardArray.length; i += 1) {
@@ -114,7 +116,16 @@ $(document).ready(() => {
                 </div>
             </div>
       `);
+      const img_side = $(`
+            <div class="card_regular">
+                <div class="sidebar_card_body">
+                    <div class="banner_image"></div>
+                    <div class="text_difficulty">${songObject.difficulty}</div>
+                </div>
+            </div>
+      `)
       img.find('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
+      img_side.find('.banner_image').css('background-image', `url("res/${tournament}/banners/${songObject.banner_filename}")`);
       if (!songObject.is_no_cmod) {
         img.find('.no_cmod_box').remove();
       }
@@ -125,11 +136,14 @@ $(document).ready(() => {
       img.addClass(statuses[0]);
       img.click(() => {
         img.removeClass(statuses[img.status]);
+        img_side.removeClass(statuses[img.status]);
         img.status += 1;
         img.status %= statuses.length;
         img.addClass(statuses[img.status]);
+        img_side.addClass(statuses[img.status]);
       });
       cards.append(img);
+      sidebar.append(img_side);
       cardObjects.push(img);
     }
   }
@@ -187,6 +201,18 @@ $(document).ready(() => {
     $.post(discordWebhookUrl, JSON.stringify({ content: theBody }), 'json');
   }
 
+  $('#draw3').on ({
+    click: function() {
+        draw(3);
+      },
+    mouseenter: function() {
+      document.getElementById('draw5').style.outline = '3px solid rgb(65,108,166)';
+      },
+    mouseout: function() {
+      document.getElementById('draw5').style.outline = '';
+      }
+  });
+
   $('#draw5').on ({
     click: function() {
         draw(5);
@@ -242,5 +268,12 @@ $(document).ready(() => {
     mouseout: function() {
       document.getElementById('submit').style.outline = '';
       }
+  });
+  $('#hide_vetoed').click(() => {
+    const mode = $('input[name=hide_vetoed]').is(':checked');
+    sidebar.removeClass('hide_vetoed');
+    if (mode) {
+      sidebar.addClass('hide_vetoed');
+    }
   });
 });

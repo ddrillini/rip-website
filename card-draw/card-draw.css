@@ -4,6 +4,29 @@ body {
     padding: 0.5em;
 }
 
+.page {
+    display: flex;
+}
+
+.sidebar {
+    display: inline-block;
+    width: 331px;
+    height: 1050px;
+    margin: 0 15px 0 0;
+    padding: 5px;
+    background-color: #292929;
+}
+
+.sidebar_info {
+    color: #DDDDDD;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+}
+
+.sidebar_card_body {
+    display: flex;
+}
+
 .title_card {
     display: inline-block;
     height: 60px;
@@ -63,6 +86,10 @@ body {
     flex-wrap: wrap;
 }
 
+#sidebar_card_area {
+    font-family: 'Lato', sans-serif;
+}
+
 .card_bound {
     background: #FFE658;
     border: 4px solid #FFE658;
@@ -78,6 +105,21 @@ body {
     margin: 10px;
     padding: 2px;
     border-radius: 20px;
+}
+
+.sidebar .card_regular, .sidebar .card_protected, .sidebar .card_vetoed {
+    display: inline-block;
+    margin: 2px;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.hide_vetoed .card_vetoed {
+    display: none;
+}
+
+.sidebar .banner_image {
+    margin: 0;
 }
 
 .card_regular {
@@ -146,6 +188,21 @@ body {
 
 .text_difficulty {
     font-size: 150%;
+}
+
+.sidebar_card_body {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.sidebar .text_difficulty {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    text-align: center;
+    background-color: #CCCCCC;
 }
 
 .content_bar {
