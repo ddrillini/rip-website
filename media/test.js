@@ -37,22 +37,25 @@ function gather_ascii(s) {
 const url2actual = new Map();
 url2actual.set("gp", "https://photos.app.goo.gl/");
 url2actual.set("discord", "https://discord.com/"); // inefficient because we could do fun things with the numbers instead, but oh well, probably no one cares
+url2actual.set("yt", "https://youtu.be/"); // watch?v=
+url2actual.set("gd", "https://drive.google.com/drive/folders/");
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	let count = 0;
 	for (let link of document.getElementsByTagName('a')) {
 		let location = link.href;
-		const sep = location.indexOf('://');
-		if (sep < 0) {
+		const sep = '://';
+		const sepIdx = location.indexOf(sep);
+		if (sepIdx < 0) {
 			continue;
 		}
-		const protocol = location.substring(0, sep);
+		const protocol = location.substring(0, sepIdx);
 		const prefix = url2actual.get(protocol);
 		if (prefix === undefined) {
 			continue;
 		}
 
-		link.href = prefix + gather_ascii(location.substring(sep + 3));
+		link.href = prefix + gather_ascii(location.substring(sepIdx + sep.length));
 		count += 1;
 	}
 	console.debug('deobfuscated ' + count + ' links')
