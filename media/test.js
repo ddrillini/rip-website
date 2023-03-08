@@ -2,9 +2,9 @@
 /*
  * This obfuscation only prevents stupid bots from scraping GitHub or the page.
  * If an attacker can run JS, we already lost the war for the client side.
- * Yes, CAPTCHA exists, but I consider it immoral.
+ * CAPTCHA exists, but I consider it immoral.
  *
- * Also my JS is probably atrocious.
+ * my JS is probably atrocious
  */
 
 function scatter_ascii(id) {
