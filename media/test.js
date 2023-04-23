@@ -10,6 +10,7 @@
 function scatter_ascii(id) {
 	let codes = [];
 	for (const codePoint of id) {
+		console.assert(codePoint.codePointAt(0) < 0x80, codePoint, id)
 		let inverted = 0x80 - codePoint.codePointAt(0);
 		// swap the upper and lower halves of the range
 		if (inverted >= 0x40) {
@@ -29,6 +30,7 @@ function gather_ascii(s) {
 		let inverted = codePoint.codePointAt(0);
 		// swap the upper and lower halves of the range [back]
 		let righted = (inverted >= 0x40) ? (inverted - 0x40) : (inverted + 0x40);
+		// uninvert
 		codes.push(0x80 - righted);
 	}
 	return String.fromCharCode(...codes);
@@ -36,7 +38,7 @@ function gather_ascii(s) {
 
 const url2actual = new Map();
 url2actual.set("gp", "https://photos.app.goo.gl/");
-url2actual.set("discord", "https://discord.com/"); // inefficient because we could do fun things with the numbers instead, but oh well, probably no one cares
+url2actual.set("discord", "https://discord.com/"); // inefficient because we could compress the numbers to base64, but I doubt anyone cares
 url2actual.set("yt", "https://youtu.be/"); // watch?v=
 url2actual.set("gd", "https://drive.google.com/drive/folders/");
 
