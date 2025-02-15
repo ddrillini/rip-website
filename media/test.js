@@ -41,8 +41,7 @@ url2actual.set("gp", "https://photos.app.goo.gl/");
 url2actual.set("discord", "https://discord.com/"); // inefficient because we could compress the numbers to base64, but I doubt anyone cares
 url2actual.set("yt", "https://youtu.be/"); // watch?v=
 url2actual.set("gd", "https://drive.google.com/drive/folders/");
-// wow I have got to buy a domain name. soon(tm)
-url2actual.set("stw", "http://" + gather_ascii(gather_ascii("fElJeHtZDHd7WQhwfG53cXx/CAM=")) + "/")
+url2actual.set("spw", "https://solus.page/")
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	let count = 0;
