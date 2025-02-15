@@ -1,1 +1,3 @@
-https://rip.ddrillini.club/
+# DDRIllini
+
+[rip.ddrillini.club](https://rip.ddrillini.club/)
