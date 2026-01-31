@@ -23,8 +23,8 @@ function scatter_ascii(id) {
 	return window.btoa(String.fromCharCode(...codes))
 }
 
-function gather_ascii(s) {
-	let coded = unescape(window.atob(s));
+function gather_ascii(id) {
+	let coded = window.atob(id);
 	let codes = [];
 	for (const codePoint of coded) {
 		let inverted = codePoint.codePointAt(0);
