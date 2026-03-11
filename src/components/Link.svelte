@@ -8,4 +8,4 @@
 
 <a class="link" href={href} title={title} aria-label={title} {target} {rel}>{title}
 </a>
-{#if external} <Icon/> {/if}
+{#if external} <Icon decorative/> {/if}
