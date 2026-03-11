@@ -1,0 +1,40 @@
+toggle()
+  flex(align: center, x-align: center)
+  background-color dark
+  text-align center
+  text(20px, lite, bold)
+  user-select none
+  cursor pointer
+  padding 6px 16px 2px
+  border-radius 8px
+
+.toggles
+  flex(row, align: center, gap: 16px)
+  margin-bottom 16px
+
+.toggle
+  toggle()
+  background-color lite
+  color dark
+
+.togglebar
+  flex()
+  outline 1px solid lite
+  border-radius 8px
+  &-label
+    text(20px, lite, bold)
+    margin-top 5px
+    margin-bottom 0
+  &-first, &-piece, &-last
+    toggle()
+    border-radius 0
+  &-first
+    border-radius 6px 0 0 6px
+  &-last
+    border-radius 0 6px 6px 0
+  &-piece
+    border-left 1px
+    border-left 1px solid lite
+  &-on
+    background-color lite
+    color dark

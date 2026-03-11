@@ -1,0 +1,97 @@
+.songs
+  flex(row, wrap, center, center, 16px)
+
+$height = 130px
+.chart
+  flex(column, wrap)
+  &-card
+    flex(row, wrap)
+    height $height
+    position relative
+    background-color bg
+    z-index 0
+    width 650px
+    transform scale(0.6)
+    margin-bottom -56px
+    +tablet()
+      transform scale(1)
+      margin-bottom 0
+  &-bn
+    z-index -4
+    position absolute
+    width 650px
+    height $height
+    overflow hidden
+    border-radius 8px
+    filter brightness(20%)
+    opacity 1
+    &-mix
+      @extends .chart-bn
+      border-radius 4px 4px 0 0
+  &-img
+    position relative
+    width 100%
+    top -50%
+    opacity 100%
+  &-inner
+    flex(column, nowrap, stretch, space-between)
+    padding 8px
+    flex-grow 1
+  &-top
+    flex(row, nowrap, space-between)
+  &-bottom
+    flex(row, nowrap, space-between, end)
+  &-artist
+    text(16px, lite, 700)
+    margin-bottom -2px
+  &-title
+    head(32px, lite, 700)
+    margin-bottom -2px
+  &-subtitle
+    head(18px, lite, 700, italic)
+    margin-bottom -2px
+  &-bpm
+    font-size 16px
+  &-desc
+    font-size 16px
+    text-align right
+    font-weight bold
+    margin-bottom 0
+    background-color alpha(black, 0.4)
+    padding 6px 12px 2px
+    position absolute
+    right 0
+    bottom 0
+    border-radius 8px 0
+
+diff()
+  flex(align: center, x-align: center)
+  border-radius 4px
+  width 32px
+  height 32px
+  user-select none
+  span
+    margin-left 2px
+
+for key, value in diffs
+  .difficulty-{key}
+    diff()
+    outline 1px solid value
+    background-color dark
+    &-num
+      mega(20px, value)
+
+tier()
+  flex()
+  height $height
+  writing-mode sideways-lr
+  head(18px, dark,, italic)
+  text-transform uppercase
+  letter-spacing 2px
+  border-radius 8px 0 0 8px
+  padding 0 0 0 4px
+
+for key, value in tiers
+  .tier-{key}
+    tier()
+    background-color value

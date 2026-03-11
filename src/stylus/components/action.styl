@@ -1,0 +1,36 @@
+action-base()
+  flex(align: center, x-align: center)
+  head(32px)
+  text-transform uppercase
+  width 256px
+  height 100px
+  padding 4px
+  background-color #f8a46b
+
+  color accent-dark
+  border-radius 16px
+  text-align center
+  line-height 32px
+  user-select none
+  outline 0px solid lite
+  transition outline 0.1s ease-out, filter 0.1s ease-out
+  span
+    margin-top 6px
+
+.actions
+  flex(wrapping: wrap, gap: 24px)
+  margin-bottom 32px
+
+.action
+  &-button
+    action-base()
+    background-size 103%
+    background-position center
+    &:hover
+      filter brightness(120%)
+      outline 3px solid lite
+  &-off
+    action-base()
+    cursor default
+    background neutral
+    pointer-events none

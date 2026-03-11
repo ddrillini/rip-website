@@ -1,0 +1,66 @@
+// Structure
+flex(dir=row, wrapping=nowrap, align=center, x-align=stretch, gap=0)
+  display flex
+  flex-flow dir wrapping
+  justify-content align
+  align-items x-align
+  gap gap
+
+// Motion
+cube-out = cubic-bezier(0.33, 1, 0.68, 1)
+animate(property, length=0.3s, ease=cube-out)
+  transition property length ease
+
+underline(col=lite, h=1px, b=1px, w=100%)
+  position relative
+  &::before
+    content ''
+    position absolute
+    width 0%
+    height h
+    bottom b
+    left "calc((100% - %s) / 2)" % w
+    background-color col
+    visibility hidden
+    animate(all, 0.2s)
+  &:hover, &:focus
+    &::before
+      visibility visible
+      width w
+      left "calc((100% - %s) / 2)" % w
+      right 50%
+
+// Hovers
+hover-highlight()
+  animate(filter)
+  &:hover, &:focus
+    filter brightness(115%) saturate(115%)
+
+hover-highlight-intense()
+  animate(filter)
+  &:hover, &:focus
+    filter brightness(160%) saturate(120%)
+
+hover-color(col)
+  animate(background-color)
+  &:hover, &:focus
+    background-color col
+
+hover-svg(col)
+  svg
+    animate(fill)
+  &:hover svg, &:focus svg
+    fill col
+
+// Breakpoints
+tablet()
+  @media screen and (min-width 500px)
+    {block}
+
+laptop()
+  @media screen and (min-width 768px)
+    {block}
+
+standard()
+  @media screen and (min-width 928px)
+    {block}
