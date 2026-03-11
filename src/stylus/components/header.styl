@@ -1,0 +1,70 @@
+.header
+  flex(row, nowrap, space-between, center)
+  overflow-x clip
+  padding 16px 24px
+  background-color lite
+  animate(outline)
+  outline 0px solid main-dark
+  outline 4px solid main-dark
+  position relative
+  +laptop()
+    transition none
+    outline 0px solid main-dark
+
+.logo
+  display block
+  &-img
+    width 200px
+  animate(transform)
+  &:hover, &:focus
+    transform scale(1.07)
+  svg
+    position relative
+    height 60px
+    left -8px
+    +tablet()
+      height 80px
+
+.nav
+  flex(column, nowrap)
+  align-items space-between
+  justify-content space-between
+  position absolute
+  top 128px
+  left 100dvw
+  background-color rgba(dark, 0.97)
+  backdrop-filter blur(4px)
+  width 100%
+  animate(left)
+  user-select none
+  +laptop()
+    flex(row, nowrap, space-around, center)
+    position static
+    background-color transparent
+    backdrop-filter none
+    z-index 1
+    margin-right -24px
+  &-link
+    padding calc(-19px + (100dvh - 128px) / 4 / 2) 24px
+    head(32px, dark, 600)
+    text-transform uppercase
+    color lite
+    text-align right
+    +laptop()
+      padding 10px 8px
+      color dark
+      font-size 24px
+      underline(dark, 2px, 12px, calc(100% - 16px))
+  &-dropdown
+    display none
+  &-active
+    left 0px
+  &-toggle
+    width 90px
+    padding 12px
+    cursor pointer
+    animate(margin)
+    animate(width)
+    stroke dark
+    +laptop()
+      display none

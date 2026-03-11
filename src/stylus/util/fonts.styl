@@ -1,0 +1,35 @@
+load-font(name, file, w=normal, st=normal)
+  @font-face
+    font-family name
+    font-style st
+    font-weight w
+    src url("../fonts/" + file + ".woff2")
+    font-display swap
+
+load-font("Mega", "mega")
+load-font("Avenir Next", "AvenirNextLTPro-Regular", normal)
+load-font("Avenir Next", "AvenirNextLTPro-Bold", bold)
+load-font("Avenir Next Condensed", "AvenirNextLTPro-MediumCn", normal)
+load-font("Avenir Next Condensed", "AvenirNextLTPro-DemiCn", bold)
+
+head(sz, c=lite, w=bold, st=normal)
+  font sz "Avenir Next", system-ui, sans-serif
+  color c
+  font-weight w
+  font-style st
+  letter-spacing -0.02em
+text(sz, c=lite, w=normal, st=normal)
+  font sz "Avenir Next", system-ui, sans-serif
+  color c
+  font-weight w
+  font-style st
+mega(sz, c=white)
+  font sz "Mega", sans-serif
+  color c
+  letter-spacing 0
+
+avc(sz, c=lite, w=normal, st=normal)
+  font sz "Avenir Next Condensed", system-ui, sans-serif
+  color c
+  font-weight w
+  font-style st

@@ -1,0 +1,13 @@
+.hero
+  background-image url("../img/hero.png")
+  width calc(100vw)
+  height 35vw
+  background-position 50% 45%
+  background-size calc(130vw)
+  overflow hidden
+  +laptop()
+    background-size calc(100vw)
+  @media screen and (min-width 1050px)
+    height 360px
+  @media screen and (min-width 1320px)
+    height 27vw

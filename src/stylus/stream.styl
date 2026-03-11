@@ -1,0 +1,140 @@
+@require './util/fonts'
+@require './util/mixins'
+@require './util/reset'
+
+lite        = white
+accent      = #0060ff
+accent-dark = #022861
+dark        = black
+marker      = #fe463f
+
+first       = #cfa935
+second      = #d2d2d2
+third       = #b59c83
+
+.content
+  flex(column, nowrap, start, start)
+  width 100vw
+  height 100vh
+  font-family "avc"
+  background linear-gradient(-135deg, #3c3e6f 0%, #3c2b4d 100%)
+  padding 32px
+
+.help
+  font-weight bold
+  color yellow
+
+.event
+  margin-bottom 8px
+  flex(gap: 8px)
+  &-logo
+    height 128px
+  &-pool
+    avc(96px, lite, bold, italic)
+    font-variant small-caps
+    letter-spacing -0.01em
+    margin-bottom -24px
+  &-status
+    avc(40px, lite)
+    letter-spacing 0.01em
+  &-error
+    avc(22px, lite)
+
+.board
+  flex(column, gap: 4px)
+
+score(clr)
+  background clr
+  avc(24px, lite)
+  padding 4px 0 0px
+  width 76px
+  text-align center
+  border-radius 8px
+
+.plr,.plr-small
+  flex(row, nowrap, start, center, 8px)
+  background linear-gradient(180deg, #f0f8fff4 -50%, #dceefff4 100%)
+  border-radius 0 16px 16px 17px
+  border 1px solid alpha(accent, 0.1)
+
+.plr
+  width 1144px
+  &-outer
+    flex(row, nowrap, start, center, 16px)
+  &-place
+    font-family "Inter"
+    font-size 72px
+    font-weight 900
+    color lite
+    overflow hidden
+    height 52px
+    text-align left
+    border-radius 0 16px 16px 16px
+    span
+      display inline-block
+      position relative
+      bottom 10px
+      background-color accent
+      padding 0 48px 0 12px
+      width 108px
+  &-detail
+    flex(row, nowrap, start, center, gap: 16px)
+    width 100%
+    span
+      display inline-block
+  &-seed
+    avc(20px, marker, bold)
+    width 24px
+  &-name
+    avc(32px, dark, bold)
+    width 256px
+  &-song
+    flex(row, nowrap, center, center, 4px)
+    position relative
+    &-num
+      avc(20px, alpha(accent-dark, 0.6))
+      margin-bottom -2px
+    &-score
+      score(accent-dark)
+    &-first
+      position absolute
+      width 10px
+      height 10px
+      border-radius 999px
+      background-color first
+      bottom -4px
+      right -4px
+    /*
+      &1
+        score(first)
+      &2
+        score(second)
+      &3
+        score(third)
+      &4
+        score(accent-dark)*/
+  &-points
+    avc(40px, dark, bold)
+    width 64px
+    text-align right
+    margin-right 16px
+    margin-bottom -4px
+    letter-spacing -0.05em
+    margin-left auto
+  &-adv
+    avc(24px, lite, bold)
+    background-color accent
+    padding 4px 8px 0px
+    text-align center
+    border-radius 8px
+
+.x
+  &1
+    margin 0 48px;
+  &2
+    margin 0 10px;
+
+.unknown
+  font-weight normal
+  font-style italic
+  color #666f77

@@ -1,0 +1,27 @@
+.footer
+  flex(dir: column, align: start, x-align: center, gap: 16px)
+  background-color fixed-accent
+  padding 24px 16px
+  p
+    font-size 16px
+    margin-bottom 0
+    text-align center
+  &-heading
+    text-align center
+    color fixed-lite
+    margin-bottom 0
+  +tablet()
+    &-socials
+      margin-bottom -24px
+
+.socials
+  flex(wrapping: wrap, align: start, gap: 12px)
+  margin-top -8px
+  margin-bottom -16px
+  &-link
+    width calc(32px+16px)
+    fill lite
+    padding 8px
+    animate(transform)
+    &:hover, &:focus
+      transform scale(1.2)
