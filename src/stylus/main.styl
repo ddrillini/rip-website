@@ -17,9 +17,7 @@ body
 .main
   overflow-x visible
   flex(column, nowrap, start, stretch)
-  min-height calc(100dvh - 120px)
   border-top 2px solid lite
-  min-height calc(100dvh - 120px - 360px - 68px)
 h1
   head(56px)
   +tablet()
@@ -72,6 +70,7 @@ iframe
     width 800px
 
 .content
+  min-height calc(100dvh - 118px - 38px * 2)
   padding 24px
 
 .center
