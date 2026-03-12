@@ -26,3 +26,4 @@ dist-ssr
 # Other
 .svelte-kit
 .dev
+build
