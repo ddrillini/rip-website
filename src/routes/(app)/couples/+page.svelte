@@ -14,7 +14,7 @@
 <h1 class="center">Couples</h1>
   <div class="actions">
     <Action external link={globals.couples.pack} text="Download Pack"/>
-    <Action external disabled link={globals.couples.results} text="Results"/>
+    <Action external link={globals.couples.results} text="Results"/>
   </div>
   <h2 class="center">Ruleset + Format</h2>
   <div class="center">
