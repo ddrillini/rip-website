@@ -41,7 +41,7 @@
     <Action external link={globals.singles.pack} text="Download Pack"/>
     <Action external link={globals.singles.seeding} text="Seeding + Standings"/>
     <Action external link={globals.singles.rules} text="Ruleset + Format"/>
-    <Action external disabled link={globals.singles.results} text="Results"/>
+    <Action external link={globals.singles.results} text="Results"/>
   </div>
 
   <h2 class="center">Songlist</h2>

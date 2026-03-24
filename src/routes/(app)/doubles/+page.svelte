@@ -35,7 +35,7 @@
   <div class="actions">
     <Action external link={globals.doubles.pack} text="Download Pack"/>
     <Action external link={globals.doubles.rules} text="Ruleset + Format"/>
-    <Action external disabled link={globals.doubles.results} text="Results"/>
+    <Action external link={globals.doubles.results} text="Results"/>
   </div>
 
   <h2 class="center">Songlist</h2>

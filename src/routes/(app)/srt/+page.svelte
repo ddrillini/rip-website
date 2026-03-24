@@ -14,7 +14,7 @@
 <h1 class="center">Tech SRT</h1>
   <div class="actions">
     <Action external link={globals.srt.schedule} text="Qualifier Schedule"/>
-    <Action external disabled link={globals.srt.results} text="Results"/>
+    <Action external link={globals.srt.results} text="Results"/>
   </div>
   <h2 class="center">Ruleset + Format</h2>
   <div class="center">

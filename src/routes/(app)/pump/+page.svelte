@@ -14,7 +14,7 @@
 <h1 class="center">Pump It Up</h1>
   <div class="actions">
     <Action external link={globals.pump.seeding} text="Seeding"/>
-    <Action external disabled link={globals.pump.results} text="Results"/>
+    <Action external link={globals.pump.results} text="Results"/>
   </div>
   <h2 class="center">Ruleset + Format</h2>
   <div class="center">

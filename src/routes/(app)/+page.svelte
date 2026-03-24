@@ -11,13 +11,14 @@
 <div class="hero"></div>
 
 <div class="content">
-  <h1 class="center">Get ready to Rumble!</h1>
-  <p class="center">DDRIllini is proud to present another installment of Rumble in the Prairie!</p>
+  <h1 class="center">Thank you!</h1>
+  <p class="center">DDRIllini and the event organizers for Rumble in the Prairie 15 are proud to have brought another successful tournament to a close. We hope you enjoyed your experience!</p>
   <div class="actions spacer">
-    <Action external text="Register on Start.gg" link="{globals.startgg}"/>
-    <Action external text="Schedule" link={globals.schedule}/>
+    <!--<Action external text="Register on Start.gg" link="{globals.startgg}"/>-->
+    <!--<Action external text="Schedule" link={globals.schedule}/>-->
+    <Action external text="Feedback Form" link={globals.feedback}/>
     <Action external text="DDRIllini Discord" link={globals.discord}/>
-    <Action disabled text="Stream" link="https://www.twitch.tv/intltiming"/>
+    <Action exteranl text="VODs" link="https://www.youtube.com/@ddrillini2357/videos"/>
   </div>
 
   <div class="double spacer">
@@ -27,7 +28,7 @@
         <Action link="/singles" text="Songlist + Download"/>
         <Action external link={globals.singles.seeding} text="Seeding + Standings"/>
         <Action external link={globals.singles.rules} text="Ruleset + Format"/>
-        <Action disabled link={globals.singles.results} text="Results"/>
+        <Action exteranl link={globals.singles.results} text="Results"/>
       </div>
     </div>
 
